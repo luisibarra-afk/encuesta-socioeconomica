@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Consultorio Escolar — CBTis No. 179</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --verde:    #1a6b3c;
+    --verde-m:  #22874c;
+    --verde-l:  #d4edda;
+    --oro:      #e2b12f;
+    --gris-f:   #1c1c1c;
+    --gris-m:   #4a4a4a;
+    --gris-l:   #f5f6f4;
+    --borde:    #d1d5db;
+    --rojo:     #c0392b;
+    --white:    #ffffff;
+    --radius:   10px;
+    --shadow:   0 2px 10px rgba(0,0,0,.08);
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--gris-l);
+    color: var(--gris-f);
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: var(--verde);
+    color: var(--white);
+    padding: 28px 24px 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    background: rgba(226,177,47,.18);
+  }
+  header::after {
+    content: '';
+    position: absolute;
+    bottom: -60px; left: -30px;
+    width: 140px; height: 140px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.07);
+  }
+  .header-badge {
+    display: inline-block;
+    background: var(--oro);
+    color: var(--verde);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    padding: 4px 14px;
+    border-radius: 20px;
+    margin-bottom: 12px;
+  }
+  header h1 {
+    font-family: 'Sora', sans-serif;
+    font-size: clamp(22px, 5vw, 34px);
+    font-weight: 800;
+    line-height: 1.2;
+    position: relative;
+  }
+  header p {
+    margin-top: 8px;
+    font-size: 13.5px;
+    opacity: .85;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.5;
+    position: relative;
+  }
+
+  /* ── AVISO ── */
+  .aviso {
+    background: #fff8e1;
+    border-left: 4px solid var(--oro);
+    padding: 12px 16px;
+    font-size: 12.5px;
+    color: #6b5000;
+    text-align: center;
+  }
+
+  /* ── WRAPPER ── */
+  .wrapper {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 28px 16px 60px;
+  }
+
+  /* ── SECCIÓN ── */
+  .seccion {
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 22px;
+    overflow: hidden;
+  }
+  .seccion-header {
+    background: var(--verde);
+    color: var(--white);
+    padding: 13px 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .seccion-header .ico {
+    font-size: 18px;
+    line-height: 1;
+  }
+  .seccion-header h2 {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+  }
+  .seccion-body {
+    padding: 22px 20px;
+    display: grid;
+    gap: 18px;
+  }
+  .row-2 { grid-template-columns: 1fr 1fr; }
+  .row-3 { grid-template-columns: 1fr 1fr 1fr; }
+  @media(max-width: 560px) {
+    .row-2, .row-3 { grid-template-columns: 1fr; }
+  }
+
+  /* ── CAMPO ── */
+  .campo { display: flex; flex-direction: column; gap: 5px; }
+  .campo label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--gris-m);
+  }
+  .campo label .req { color: var(--rojo); margin-left: 2px; }
+  .campo input[type="text"],
+  .campo input[type="email"],
+  .campo input[type="date"],
+  .campo select,
+  .campo textarea {
+    border: 1.5px solid var(--borde);
+    border-radius: 7px;
+    padding: 9px 12px;
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+    color: var(--gris-f);
+    background: var(--white);
+    transition: border-color .2s, box-shadow .2s;
+    width: 100%;
+  }
+  .campo input:focus,
+  .campo select:focus,
+  .campo textarea:focus {
+    outline: none;
+    border-color: var(--verde-m);
+    box-shadow: 0 0 0 3px rgba(34,135,76,.12);
+  }
+  .campo textarea { resize: vertical; min-height: 80px; }
+
+  /* ── RADIO / CHECKBOX ── */
+  .opciones { display: flex; flex-direction: column; gap: 7px; margin-top: 2px; }
+  .opciones.horizontal { flex-direction: row; flex-wrap: wrap; gap: 10px; }
+  .opcion {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 13.5px; cursor: pointer;
+  }
+  .opcion input[type="radio"],
+  .opcion input[type="checkbox"] {
+    accent-color: var(--verde);
+    width: 16px; height: 16px; cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  /* ── TARJETAS ESTILO APRENDIZAJE ── */
+  .estilos-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 6px;
+  }
+  @media(max-width: 560px) { .estilos-grid { grid-template-columns: 1fr; } }
+  .estilo-card {
+    cursor: pointer;
+    border: 2px solid var(--borde);
+    border-radius: 10px;
+    padding: 0;
+    overflow: hidden;
+    transition: border-color .2s, box-shadow .2s;
+    display: block;
+  }
+  .estilo-card input[type="radio"] { display: none; }
+  .estilo-card:has(input:checked) {
+    border-color: var(--verde-m);
+    box-shadow: 0 0 0 3px rgba(34,135,76,.12);
+  }
+  .estilo-content {
+    padding: 14px 14px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .estilo-ico { font-size: 22px; line-height: 1; margin-bottom: 2px; }
+  .estilo-content strong {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--gris-f);
+  }
+  .estilo-card:has(input:checked) .estilo-content strong { color: var(--verde); }
+  .estilo-content p {
+    font-size: 12.5px;
+    color: var(--gris-m);
+    line-height: 1.5;
+    margin: 0;
+  }
+  .estilo-card:hover { border-color: #aaa; }
+
+  /* ── SUB-SECCIÓN discapacidad ── */
+  .sub-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  @media(max-width: 560px) { .sub-grid { grid-template-columns: 1fr; } }
+  .sub-campo {
+    background: var(--gris-l);
+    border-radius: 8px;
+    padding: 14px 14px 10px;
+  }
+  .sub-campo h3 {
+    font-size: 12.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    color: var(--verde);
+    margin-bottom: 8px;
+  }
+
+  /* ── CONSENTIMIENTO ── */
+  .consentimiento {
+    background: var(--verde-l);
+    border-radius: 8px;
+    padding: 14px 16px;
+    font-size: 13px;
+    color: #1a4a2e;
+    line-height: 1.6;
+  }
+  .consentimiento strong { font-weight: 700; }
+
+  /* ── BTN SUBMIT ── */
+  .btn-enviar {
+    width: 100%;
+    background: var(--verde);
+    color: var(--white);
+    font-family: 'Sora', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    padding: 15px;
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    letter-spacing: .04em;
+    transition: background .2s, transform .1s;
+    margin-top: 6px;
+  }
+  .btn-enviar:hover { background: #145530; }
+  .btn-enviar:active { transform: scale(.98); }
+
+  /* ── TOAST ── */
+  #toast {
+    display: none;
+    position: fixed;
+    bottom: 28px; left: 50%;
+    transform: translateX(-50%);
+    background: var(--verde);
+    color: #fff;
+    padding: 14px 28px;
+    border-radius: 40px;
+    font-size: 14px;
+    font-weight: 600;
+    box-shadow: 0 4px 20px rgba(0,0,0,.2);
+    z-index: 999;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center;
+    font-size: 12px;
+    color: #888;
+    padding: 20px 0 40px;
+  }
+  footer span { color: var(--verde); font-weight: 600; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-badge">CBTis No. 179</div>
+  <h1>🏥 Consultorio Escolar</h1>
+  <p>Este formulario permite integrar el expediente del alumno, salvaguardar su integridad física y activar protocolos de emergencia.</p>
+</header>
+
+<div class="aviso">
+  ⚠️ Los campos marcados con <strong>*</strong> son obligatorios. La información proporcionada es confidencial.
+</div>
+
+<div class="wrapper">
+<form id="formConsultorio" novalidate>
+
+  <!-- 1. DATOS DEL ESTUDIANTE -->
+  <div class="seccion">
+    <div class="seccion-header"><span class="ico">🎓</span><h2>Datos de identificación del estudiante</h2></div>
+    <div class="seccion-body">
+      <div class="seccion-body row-3" style="padding:0; gap:16px;">
+        <div class="campo">
+          <label>Apellido paterno <span class="req">*</span></label>
+          <input type="text" name="ap_paterno" placeholder="Ej. García" required>
+        </div>
+        <div class="campo">
+          <label>Apellido materno <span class="req">*</span></label>
+          <input type="text" name="ap_materno" placeholder="Ej. López" required>
+        </div>
+        <div class="campo">
+          <label>Nombre(s) <span class="req">*</span></label>
+          <input type="text" name="nombres" placeholder="Ej. Juan Carlos" required>
+        </div>
+      </div>
+      <div class="seccion-body row-3" style="padding:0; gap:16px;">
+        <div class="campo">
+          <label>Fecha de nacimiento <span class="req">*</span></label>
+          <input type="date" name="fecha_nac" required>
+        </div>
+        <div class="campo">
+          <label>CURP <span class="req">*</span></label>
+          <input type="text" name="curp" placeholder="18 caracteres" maxlength="18" style="text-transform:uppercase">
+        </div>
+        <div class="campo">
+          <label>Semestre <span class="req">*</span></label>
+          <div class="opciones horizontal">
+            <label class="opcion"><input type="radio" name="semestre" value="2°"> 2°</label>
+            <label class="opcion"><input type="radio" name="semestre" value="4°"> 4°</label>
+            <label class="opcion"><input type="radio" name="semestre" value="6°"> 6°</label>
+          </div>
+        </div>
+        <div class="campo">
+          <label>Especialidad <span class="req">*</span></label>
+          <select name="especialidad" required>
+            <option value="" disabled selected>— Selecciona tu especialidad —</option>
+            <option value="Ciberseguridad">Ciberseguridad</option>
+            <option value="Administración de Recursos Humanos">Administración de Recursos Humanos</option>
+            <option value="Trabajo Social">Trabajo Social</option>
+            <option value="Arquitectura">Arquitectura</option>
+            <option value="Programación">Programación</option>
+            <option value="Electricidad">Electricidad</option>
+            <option value="Mecatrónica">Mecatrónica</option>
+          </select>
+        </div>
+      </div>
+      <div class="campo">
+        <label>Turno <span class="req">*</span></label>
+        <div class="opciones horizontal">
+          <label class="opcion"><input type="radio" name="turno" value="Matutino"> Matutino</label>
+          <label class="opcion"><input type="radio" name="turno" value="Vespertino" checked> Vespertino</label>
+        </div>
+      </div>
+      <div class="campo">
+        <label>Correo electrónico <span class="req">*</span></label>
+        <input type="email" name="email" placeholder="alumno@ejemplo.com" required>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. CONTACTO DE EMERGENCIA -->
+  <div class="seccion">
+    <div class="seccion-header"><span class="ico">📞</span><h2>Contacto de emergencia y tutor</h2></div>
+    <div class="seccion-body">
+      <div class="campo">
+        <label>Nombre del padre, madre, tutor o persona de confianza <span class="req">*</span></label>
+        <input type="text" name="tutor_nombre" required>
+      </div>
+      <div class="seccion-body row-2" style="padding:0; gap:16px;">
+        <div class="campo">
+          <label>Teléfono principal <span class="req">*</span></label>
+          <input type="text" name="tel_principal" placeholder="10 dígitos" maxlength="10">
+        </div>
+        <div class="campo">
+          <label>Teléfono alternativo <span class="req">*</span></label>
+          <input type="text" name="tel_alt" placeholder="10 dígitos" maxlength="10">
+        </div>
+      </div>
+      <div class="seccion-body row-2" style="padding:0; gap:16px;">
+        <div class="campo">
+          <label>Parentesco <span class="req">*</span></label>
+          <input type="text" name="parentesco" placeholder="Ej. Madre">
+        </div>
+        <div class="campo">
+          <label>Aseguradora / Servicio médico <span class="req">*</span></label>
+          <input type="text" name="aseguradora" placeholder="IMSS, ISSSTE, Privado… y No. de afiliación">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. NECESIDADES EDUCATIVAS -->
+  <div class="seccion">
+    <div class="seccion-header"><span class="ico">📚</span><h2>Necesidades educativas</h2></div>
+    <div class="seccion-body">
+      <div class="campo">
+        <label>¿Cuál es tu estilo de aprendizaje? <span class="req">*</span></label>
+        <div class="estilos-grid">
+          <label class="estilo-card">
+            <input type="radio" name="estilo_aprendizaje" value="Visual">
+            <div class="estilo-content">
+              <span class="estilo-ico">👁️</span>
+              <strong>Visual</strong>
+              <p>Aprendes mejor con imágenes, diagramas, mapas mentales, colores y esquemas. Prefieres leer y ver antes que escuchar.</p>
+            </div>
+          </label>
+          <label class="estilo-card">
+            <input type="radio" name="estilo_aprendizaje" value="Auditivo">
+            <div class="estilo-content">
+              <span class="estilo-ico">🎧</span>
+              <strong>Auditivo</strong>
+              <p>Aprendes mejor escuchando explicaciones, repitiendo en voz alta o participando en discusiones. Las clases orales te funcionan muy bien.</p>
+            </div>
+          </label>
+          <label class="estilo-card">
+            <input type="radio" name="estilo_aprendizaje" value="Kinestésico">
+            <div class="estilo-content">
+              <span class="estilo-ico">🤝</span>
+              <strong>Kinestésico</strong>
+              <p>Aprendes mejor haciendo, tocando y experimentando. Necesitas movimiento y práctica; aprendes con el cuerpo en acción.</p>
+            </div>
+          </label>
+          <label class="estilo-card">
+            <input type="radio" name="estilo_aprendizaje" value="No lo sé">
+            <div class="estilo-content">
+              <span class="estilo-ico">🤔</span>
+              <strong>No lo sé</strong>
+              <p>Aún no identificas cuál es tu forma predominante de aprender. ¡No te preocupes, es normal!</p>
+            </div>
+          </label>
+        </div>
+      </div>
+      <div class="campo">
+        <label>¿Qué tanto socializas con tus compañeros? <span class="req">*</span></label>
+        <input type="text" name="socializacion" placeholder="Ej. Mucho, poco, me cuesta trabajo…">
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. HISTORIAL DE DISCAPACIDAD -->
+  <div class="seccion">
+    <div class="seccion-header"><span class="ico">♿</span><h2>Historial de discapacidad</h2></div>
+    <div class="seccion-body">
+      <p style="font-size:13px;color:var(--gris-m);margin-bottom:4px;">Indica si presentas alguna discapacidad permanente y describe los apoyos que requieres.</p>
+
+      <div class="sub-grid">
+        <div class="sub-campo">
+          <h3>Física / Motriz</h3>
+          <div class="opciones">
+            <label class="opcion"><input type="checkbox" name="disc_fisica" value="Uso de silla de ruedas"> Uso de silla de ruedas</label>
+            <label class="opcion"><input type="checkbox" name="disc_fisica" value="Uso de muletas"> Uso de muletas</label>
+            <label class="opcion"><input type="checkbox" name="disc_fisica" value="Uso de prótesis"> Uso de prótesis</label>
+            <label class="opcion"><input type="checkbox" name="disc_fisica" value="Ninguno"> Ninguno</label>
+          </div>
+        </div>
+        <div class="sub-campo">
+          <h3>Visual</h3>
+          <div class="opciones">
+            <label class="opcion"><input type="checkbox" name="disc_visual" value="Baja visión"> Baja visión</label>
+            <label class="opcion"><input type="checkbox" name="disc_visual" value="Ceguera"> Ceguera</label>
+            <label class="opcion"><input type="checkbox" name="disc_visual" value="Ninguno"> Ninguno</label>
+          </div>
+        </div>
+        <div class="sub-campo">
+          <h3>Auditiva</h3>
+          <div class="opciones">
+            <label class="opcion"><input type="checkbox" name="disc_auditiva" value="Sordera"> Sordera</label>
+            <label class="opcion"><input type="checkbox" name="disc_auditiva" value="Hipoacusia"> Hipoacusia</label>
+            <label class="opcion"><input type="checkbox" name="disc_auditiva" value="Ninguno"> Ninguno</label>
+          </div>
+        </div>
+        <div class="sub-campo">
+          <h3>Intelectual / Cognitiva</h3>
+          <div class="opciones">
+            <label class="opcion"><input type="checkbox" name="disc_intelectual" value="Leve"> Leve</label>
+            <label class="opcion"><input type="checkbox" name="disc_intelectual" value="Moderada"> Moderada</label>
+            <label class="opcion"><input type="checkbox" name="disc_intelectual" value="Grave"> Grave</label>
+            <label class="opcion"><input type="checkbox" name="disc_intelectual" value="Profunda"> Profunda</label>
+            <label class="opcion"><input type="checkbox" name="disc_intelectual" value="Ninguna"> Ninguna</label>
+          </div>
+        </div>
+        <div class="sub-campo" style="grid-column: 1 / -1;">
+          <h3>Psicosocial / Neurodivergencia</h3>
+          <div class="opciones horizontal">
+            <label class="opcion"><input type="checkbox" name="disc_psico" value="TEA"> TEA</label>
+            <label class="opcion"><input type="checkbox" name="disc_psico" value="TDAH"> TDAH</label>
+            <label class="opcion"><input type="checkbox" name="disc_psico" value="Esquizofrenia"> Esquizofrenia</label>
+            <label class="opcion"><input type="checkbox" name="disc_psico" value="Depresión"> Depresión</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="campo">
+        <label>Describe tus necesidades específicas y los apoyos que requieres <span class="req">*</span></label>
+        <textarea name="desc_necesidades" placeholder="Describe los apoyos o adecuaciones que necesitas dentro del plantel…"></textarea>
+      </div>
+      <div class="campo">
+        <label>¿Cuentas con un certificado de diagnóstico actual? (emitido por institución de salud pública) <span class="req">*</span></label>
+        <div class="opciones horizontal">
+          <label class="opcion"><input type="radio" name="tiene_certificado" value="Sí"> Sí</label>
+          <label class="opcion"><input type="radio" name="tiene_certificado" value="No"> No</label>
+          <label class="opcion"><input type="radio" name="tiene_certificado" value="En trámite"> En trámite</label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. ENFERMEDADES CRÓNICAS -->
+  <div class="seccion">
+    <div class="seccion-header"><span class="ico">💊</span><h2>Enfermedades crónicas y condiciones de salud</h2></div>
+    <div class="seccion-body">
+      <div class="campo">
+        <label>¿Padeces alguna enfermedad a largo plazo que requiera control médico o administración de medicamentos dentro del plantel? <span class="req">*</span></label>
+        <div class="opciones">
+          <label class="opcion"><input type="checkbox" name="enf_cronica" value="Asma"> Asma</label>
+          <label class="opcion"><input type="checkbox" name="enf_cronica" value="Diabetes"> Diabetes (Tipo 1 o 2, manejo de insulina)</label>
+          <label class="opcion"><input type="checkbox" name="enf_cronica" value="Epilepsia"> Epilepsia</label>
+          <label class="opcion"><input type="checkbox" name="enf_cronica" value="Cardiopatía"> Cardiopatía (enfermedades del corazón)</label>
+          <label class="opcion"><input type="checkbox" name="enf_cronica" value="Alergias severas"> Alergias severas (alimentos, medicamentos o picaduras)</label>
+          <label class="opcion"><input type="checkbox" name="enf_cronica" value="Ninguna"> Ninguna</label>
+        </div>
+        <input type="text" name="enf_cronica_otro" placeholder="Otra enfermedad (especificar)" style="margin-top:8px;">
+      </div>
+      <div class="campo">
+        <label>¿Qué cuidados especiales o medicamentos necesitas dentro del plantel?</label>
+        <textarea name="medicamentos" placeholder="Nombre del medicamento, dosis y horario en que debes tomarlo…"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. SITUACIÓN SOCIOECONÓMICA -->
+  <div class="seccion">
+    <div class="seccion-header"><span class="ico">🏠</span><h2>Situación socioeconómica</h2></div>
+    <div class="seccion-body">
+      <p style="font-size:13px;color:var(--gris-m);">Esta información es confidencial y nos ayuda a identificar apoyos y becas a los que puedes acceder.</p>
+
+      <div class="campo">
+        <label>¿Con quién vives actualmente? <span class="req">*</span></label>
+        <div class="opciones">
+          <label class="opcion"><input type="radio" name="con_quien_vive" value="Ambos padres"> Con ambos padres</label>
+          <label class="opcion"><input type="radio" name="con_quien_vive" value="Solo madre"> Solo con mi madre</label>
+          <label class="opcion"><input type="radio" name="con_quien_vive" value="Solo padre"> Solo con mi padre</label>
+          <label class="opcion"><input type="radio" name="con_quien_vive" value="Abuelos/otros familiares"> Con abuelos u otros familiares</label>
+          <label class="opcion"><input type="radio" name="con_quien_vive" value="Solo"> Solo/a</label>
+          <label class="opcion"><input type="radio" name="con_quien_vive" value="Otro"> Otro</label>
+        </div>
+      </div>
+
+      <div class="row-2" style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+        <div class="campo">
+          <label>¿Cuántas personas viven en tu hogar (incluyéndote)? <span class="req">*</span></label>
+          <select name="num_personas_hogar">
+            <option value="" disabled selected>— Selecciona —</option>
+            <option>1</option><option>2</option><option>3</option>
+            <option>4</option><option>5</option><option>6 o más</option>
+          </select>
+        </div>
+        <div class="campo">
+          <label>¿Cuántos de ellos son estudiantes? <span class="req">*</span></label>
+          <select name="num_estudiantes_hogar">
+            <option value="" disabled selected>— Selecciona —</option>
+            <option>Solo yo</option><option>2</option><option>3</option><option>4 o más</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="campo">
+        <label>Tu vivienda es… <span class="req">*</span></label>
+        <div class="opciones horizontal">
+          <label class="opcion"><input type="radio" name="tipo_vivienda" value="Propia"> Propia</label>
+          <label class="opcion"><input type="radio" name="tipo_vivienda" value="Rentada"> Rentada</label>
+          <label class="opcion"><input type="radio" name="tipo_vivienda" value="Prestada"> Prestada / cedida</label>
+          <label class="opcion"><input type="radio" name="tipo_vivienda" value="Otro"> Otro</label>
+        </div>
+      </div>
+
+      <div class="campo">
+        <label>¿Con qué servicios cuenta tu vivienda? <span class="req">*</span></label>
+        <div class="opciones horizontal">
+          <label class="opcion"><input type="checkbox" name="servicios" value="Agua potable"> Agua potable</label>
+          <label class="opcion"><input type="checkbox" name="servicios" value="Electricidad"> Electricidad</label>
+          <label class="opcion"><input type="checkbox" name="servicios" value="Drenaje"> Drenaje</label>
+          <label class="opcion"><input type="checkbox" name="servicios" value="Internet"> Internet</label>
+          <label class="opcion"><input type="checkbox" name="servicios" value="Gas"> Gas</label>
+        </div>
+      </div>
+
+      <div class="campo">
+        <label>Ingreso mensual aproximado de tu familia <span class="req">*</span></label>
+        <div class="opciones">
+          <label class="opcion"><input type="radio" name="ingreso_familia" value="Menos de $3,000"> Menos de $3,000</label>
+          <label class="opcion"><input type="radio" name="ingreso_familia" value="$3,001 – $6,000"> $3,001 – $6,000</label>
+          <label class="opcion"><input type="radio" name="ingreso_familia" value="$6,001 – $10,000"> $6,001 – $10,000</label>
+          <label class="opcion"><input type="radio" name="ingreso_familia" value="$10,001 – $15,000"> $10,001 – $15,000</label>
+          <label class="opcion"><input type="radio" name="ingreso_familia" value="Más de $15,000"> Más de $15,000</label>
+          <label class="opcion"><input type="radio" name="ingreso_familia" value="No sé / prefiero no decir"> No sé / prefiero no decir</label>
+        </div>
+      </div>
+
+      <div class="campo">
+        <label>¿Quién es el principal proveedor económico de tu hogar? <span class="req">*</span></label>
+        <div class="opciones horizontal">
+          <label class="opcion"><input type="radio" name="proveedor" value="Padre"> Padre</label>
+          <label class="opcion"><input type="radio" name="proveedor" value="Madre"> Madre</label>
+          <label class="opcion"><input type="radio" name="proveedor" value="Ambos"> Ambos</label>
+          <label class="opcion"><input type="radio" name="proveedor" value="Otro familiar"> Otro familiar</label>
+          <label class="opcion"><input type="radio" name="proveedor" value="Yo mismo/a"> Yo mismo/a</label>
+        </div>
+      </div>
+
+      <div class="campo">
+        <label>¿Trabajas actualmente además de estudiar? <span class="req">*</span></label>
+        <div class="opciones horizontal">
+          <label class="opcion"><input type="radio" name="trabaja" value="No"> No</label>
+          <label class="opcion"><input type="radio" name="trabaja" value="Sí, medio tiempo"> Sí, medio tiempo</label>
+          <label class="opcion"><input type="radio" name="trabaja" value="Sí, tiempo completo"> Sí, tiempo completo</label>
+          <label class="opcion"><input type="radio" name="trabaja" value="A veces"> A veces / por temporadas</label>
+        </div>
+      </div>
+
+      <div class="row-2" style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+        <div class="campo">
+          <label>Escolaridad del padre o tutor masculino <span class="req">*</span></label>
+          <select name="escolaridad_padre">
+            <option value="" disabled selected>— Selecciona —</option>
+            <option>Sin estudios</option>
+            <option>Primaria</option>
+            <option>Secundaria</option>
+            <option>Bachillerato / Técnico</option>
+            <option>Licenciatura</option>
+            <option>Posgrado</option>
+            <option>No aplica / No sé</option>
+          </select>
+        </div>
+        <div class="campo">
+          <label>Escolaridad de la madre o tutora <span class="req">*</span></label>
+          <select name="escolaridad_madre">
+            <option value="" disabled selected>— Selecciona —</option>
+            <option>Sin estudios</option>
+            <option>Primaria</option>
+            <option>Secundaria</option>
+            <option>Bachillerato / Técnico</option>
+            <option>Licenciatura</option>
+            <option>Posgrado</option>
+            <option>No aplica / No sé</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="campo">
+        <label>¿Con qué dispositivos cuentas para estudiar? <span class="req">*</span></label>
+        <div class="opciones horizontal">
+          <label class="opcion"><input type="checkbox" name="dispositivos" value="Computadora de escritorio"> Computadora de escritorio</label>
+          <label class="opcion"><input type="checkbox" name="dispositivos" value="Laptop"> Laptop</label>
+          <label class="opcion"><input type="checkbox" name="dispositivos" value="Tablet"> Tablet</label>
+          <label class="opcion"><input type="checkbox" name="dispositivos" value="Smartphone"> Smartphone</label>
+          <label class="opcion"><input type="checkbox" name="dispositivos" value="Ninguno"> Ninguno</label>
+        </div>
+      </div>
+
+      <div class="campo">
+        <label>¿Recibes algún apoyo económico o beca actualmente? <span class="req">*</span></label>
+        <div class="opciones">
+          <label class="opcion"><input type="checkbox" name="becas" value="Beca Benito Juárez"> Beca Benito Juárez (Bienestar)</label>
+          <label class="opcion"><input type="checkbox" name="becas" value="Beca institucional"> Beca institucional del plantel</label>
+          <label class="opcion"><input type="checkbox" name="becas" value="Beca municipal/estatal"> Beca municipal o estatal</label>
+          <label class="opcion"><input type="checkbox" name="becas" value="Apoyo familiar"> Apoyo económico de un familiar externo</label>
+          <label class="opcion"><input type="checkbox" name="becas" value="Ninguno"> No recibo ningún apoyo</label>
+        </div>
+      </div>
+
+      <div class="campo">
+        <label>¿Cómo te trasladas al plantel? <span class="req">*</span></label>
+        <div class="opciones horizontal">
+          <label class="opcion"><input type="radio" name="transporte" value="A pie"> A pie</label>
+          <label class="opcion"><input type="radio" name="transporte" value="Bicicleta"> Bicicleta</label>
+          <label class="opcion"><input type="radio" name="transporte" value="Transporte público"> Transporte público</label>
+          <label class="opcion"><input type="radio" name="transporte" value="Vehículo propio/familiar"> Vehículo propio o familiar</label>
+          <label class="opcion"><input type="radio" name="transporte" value="Otro"> Otro</label>
+        </div>
+      </div>
+
+      <div class="campo">
+        <label>Tiempo aproximado de traslado al plantel <span class="req">*</span></label>
+        <div class="opciones horizontal">
+          <label class="opcion"><input type="radio" name="tiempo_traslado" value="Menos de 15 min"> Menos de 15 min</label>
+          <label class="opcion"><input type="radio" name="tiempo_traslado" value="15 – 30 min"> 15 – 30 min</label>
+          <label class="opcion"><input type="radio" name="tiempo_traslado" value="30 – 60 min"> 30 – 60 min</label>
+          <label class="opcion"><input type="radio" name="tiempo_traslado" value="Más de 1 hora"> Más de 1 hora</label>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 7. CONSENTIMIENTO -->
+  <div class="seccion">
+    <div class="seccion-header"><span class="ico">✍️</span><h2>Consentimiento y aviso de privacidad</h2></div>
+    <div class="seccion-body">
+      <div class="consentimiento">
+        <strong>Declaro</strong> que la información que proporcioné es verídica y autorizo al personal directivo y docente del CBTis No. 179 a tomar las medidas médicas de emergencia necesarias en caso de ser requeridas. Mis datos serán tratados conforme a la normativa de protección de datos de la SEP/DGETI.
+      </div>
+      <div class="seccion-body row-2" style="padding:0; gap:16px;">
+        <div class="campo">
+          <label>Nombre del padre, madre o tutor <span class="req">*</span></label>
+          <input type="text" name="firma_tutor" placeholder="Nombre completo del tutor">
+        </div>
+        <div class="campo">
+          <label>Tu nombre completo <span class="req">*</span></label>
+          <input type="text" name="firma_alumno" placeholder="Escribe tu nombre completo">
+        </div>
+      </div>
+      <div class="campo">
+        <label>Fecha <span class="req">*</span></label>
+        <input type="date" name="fecha_firma" required>
+      </div>
+    </div>
+  </div>
+
+  <button type="submit" class="btn-enviar">Guardar expediente →</button>
+
+</form>
+</div>
+
+<footer>
+  CBTis No. 179 · Tulancingo de Bravo, Hidalgo · DGETI / <span>SEP</span>
+</footer>
+
+<div id="toast">✅ Expediente guardado correctamente</div>
+
+<script>
+  document.querySelector('[name="fecha_firma"]').valueAsDate = new Date();
+
+  document.getElementById('formConsultorio').addEventListener('submit', function(e){
+    e.preventDefault();
+    const toast = document.getElementById('toast');
+    toast.style.display = 'block';
+    setTimeout(() => toast.style.display = 'none', 3500);
+  });
+</script>
+</body>
+</html>
