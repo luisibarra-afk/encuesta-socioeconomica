@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -158,13 +158,11 @@
     font-size: 13px;
     font-weight: 600;
     color: var(--gris-m);
-    display: inline;
   }
   .campo label .req {
     color: var(--rojo);
-    margin-left: 3px;
-    white-space: nowrap;
-    display: inline;
+    font-weight: 700;
+    margin-right: 3px;
   }
   .campo input[type="text"],
   .campo input[type="email"],
@@ -366,29 +364,29 @@
     <div class="seccion-body">
       <div class="seccion-body row-3" style="padding:0; gap:16px;">
         <div class="campo">
-          <label>Apellido paterno <span class="req">*</span></label>
+          <label><span class="req">* </span>Apellido paterno</label>
           <input type="text" name="ap_paterno" placeholder="Ej. García" required>
         </div>
         <div class="campo">
-          <label>Apellido materno <span class="req">*</span></label>
+          <label><span class="req">* </span>Apellido materno</label>
           <input type="text" name="ap_materno" placeholder="Ej. López" required>
         </div>
         <div class="campo">
-          <label>Nombre(s) <span class="req">*</span></label>
+          <label><span class="req">* </span>Nombre(s)</label>
           <input type="text" name="nombres" placeholder="Ej. Juan Carlos" required>
         </div>
       </div>
       <div class="seccion-body row-3" style="padding:0; gap:16px;">
         <div class="campo">
-          <label>Fecha de nacimiento <span class="req">*</span></label>
+          <label><span class="req">* </span>Fecha de nacimiento</label>
           <input type="date" name="fecha_nac" required>
         </div>
         <div class="campo">
-          <label>CURP <span class="req">*</span></label>
+          <label><span class="req">* </span>CURP</label>
           <input type="text" name="curp" placeholder="18 caracteres" maxlength="18" style="text-transform:uppercase">
         </div>
         <div class="campo">
-          <label>Semestre <span class="req">*</span></label>
+          <label><span class="req">* </span>Semestre</label>
           <div class="opciones horizontal">
             <label class="opcion"><input type="radio" name="semestre" value="2°"> 2°</label>
             <label class="opcion"><input type="radio" name="semestre" value="4°"> 4°</label>
@@ -396,7 +394,7 @@
           </div>
         </div>
         <div class="campo">
-          <label>Especialidad <span class="req">*</span></label>
+          <label><span class="req">* </span>Especialidad</label>
           <select name="especialidad" required>
             <option value="" disabled selected>— Selecciona tu especialidad —</option>
             <option value="Ciberseguridad">Ciberseguridad</option>
@@ -410,14 +408,14 @@
         </div>
       </div>
       <div class="campo">
-        <label>Turno <span class="req">*</span></label>
+        <label><span class="req">* </span>Turno</label>
         <div class="opciones horizontal">
           <label class="opcion"><input type="radio" name="turno" value="Matutino"> Matutino</label>
           <label class="opcion"><input type="radio" name="turno" value="Vespertino" checked> Vespertino</label>
         </div>
       </div>
       <div class="campo">
-        <label>Correo electrónico <span class="req">*</span></label>
+        <label><span class="req">* </span>Correo electrónico</label>
         <input type="email" name="email" placeholder="alumno@ejemplo.com" required>
       </div>
     </div>
@@ -428,26 +426,26 @@
     <div class="seccion-header"><span class="ico">📞</span><h2>Contacto de emergencia y tutor</h2></div>
     <div class="seccion-body">
       <div class="campo">
-        <label>Nombre del padre, madre, tutor o persona de confianza <span class="req">*</span></label>
+        <label><span class="req">* </span>Nombre del padre, madre, tutor o persona de confianza</label>
         <input type="text" name="tutor_nombre" required>
       </div>
       <div class="seccion-body row-2" style="padding:0; gap:16px;">
         <div class="campo">
-          <label>Teléfono principal <span class="req">*</span></label>
+          <label><span class="req">* </span>Teléfono principal</label>
           <input type="text" name="tel_principal" placeholder="10 dígitos" maxlength="10">
         </div>
         <div class="campo">
-          <label>Teléfono alternativo <span class="req">*</span></label>
+          <label><span class="req">* </span>Teléfono alternativo</label>
           <input type="text" name="tel_alt" placeholder="10 dígitos" maxlength="10">
         </div>
       </div>
       <div class="seccion-body row-2" style="padding:0; gap:16px;">
         <div class="campo">
-          <label>Parentesco <span class="req">*</span></label>
+          <label><span class="req">* </span>Parentesco</label>
           <input type="text" name="parentesco" placeholder="Ej. Madre">
         </div>
         <div class="campo">
-          <label>Aseguradora / Servicio médico <span class="req">*</span></label>
+          <label><span class="req">* </span>Aseguradora / Servicio médico</label>
           <input type="text" name="aseguradora" placeholder="IMSS, ISSSTE, Privado… y No. de afiliación">
         </div>
       </div>
@@ -459,7 +457,7 @@
     <div class="seccion-header"><span class="ico">📚</span><h2>Necesidades educativas</h2></div>
     <div class="seccion-body">
       <div class="campo">
-        <label>¿Cuál es tu estilo de aprendizaje? <span class="req">*</span></label>
+        <label><span class="req">* </span>¿Cuál es tu estilo de aprendizaje?</label>
         <p style="font-size:12.5px;color:var(--gris-m);margin-bottom:2px;">Elige la opción con la que más te identificas.</p>
         <div class="estilos-grid">
           <label class="estilo-card">
@@ -497,7 +495,7 @@
         </div>
       </div>
       <div class="campo">
-        <label>¿Qué tanto socializas con tus compañeros? <span class="req">*</span></label>
+        <label><span class="req">* </span>¿Qué tanto socializas con tus compañeros?</label>
         <input type="text" name="socializacion" placeholder="Ej. Mucho, poco, me cuesta trabajo…">
       </div>
     </div>
@@ -557,11 +555,11 @@
       </div>
 
       <div class="campo">
-        <label>Describe tus necesidades específicas y los apoyos que requieres <span class="req">*</span></label>
+        <label><span class="req">* </span>Describe tus necesidades específicas y los apoyos que requieres</label>
         <textarea name="desc_necesidades" placeholder="Describe los apoyos o adecuaciones que necesitas dentro del plantel…"></textarea>
       </div>
       <div class="campo">
-        <label>¿Cuentas con un certificado de diagnóstico actual? (emitido por institución de salud pública) <span class="req">*</span></label>
+        <label><span class="req">* </span>¿Cuentas con un certificado de diagnóstico actual? (emitido por institución de salud pública)</label>
         <div class="opciones horizontal">
           <label class="opcion"><input type="radio" name="tiene_certificado" value="Sí"> Sí</label>
           <label class="opcion"><input type="radio" name="tiene_certificado" value="No"> No</label>
@@ -576,7 +574,7 @@
     <div class="seccion-header"><span class="ico">💊</span><h2>Enfermedades crónicas y condiciones de salud</h2></div>
     <div class="seccion-body">
       <div class="campo">
-        <label>¿Padeces alguna enfermedad a largo plazo que requiera control médico o administración de medicamentos dentro del plantel? <span class="req">*</span></label>
+        <label><span class="req">* </span>¿Padeces alguna enfermedad a largo plazo que requiera control médico o administración de medicamentos dentro del plantel?</label>
         <div class="opciones">
           <label class="opcion"><input type="checkbox" name="enf_cronica" value="Asma"> Asma</label>
           <label class="opcion"><input type="checkbox" name="enf_cronica" value="Diabetes"> Diabetes (Tipo 1 o 2, manejo de insulina)</label>
@@ -601,7 +599,7 @@
       <p style="font-size:13px;color:var(--gris-m);">Esta información es confidencial y nos ayuda a identificar apoyos y becas a los que puedes acceder.</p>
 
       <div class="campo">
-        <label>¿Con quién vives actualmente? <span class="req">*</span></label>
+        <label><span class="req">* </span>¿Con quién vives actualmente?</label>
         <div class="opciones">
           <label class="opcion"><input type="radio" name="con_quien_vive" value="Ambos padres"> Con ambos padres</label>
           <label class="opcion"><input type="radio" name="con_quien_vive" value="Solo madre"> Solo con mi madre</label>
@@ -614,7 +612,7 @@
 
       <div class="row-2" style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
         <div class="campo">
-          <label>¿Cuántas personas viven en tu hogar (incluyéndote)? <span class="req">*</span></label>
+          <label><span class="req">* </span>¿Cuántas personas viven en tu hogar (incluyéndote)?</label>
           <select name="num_personas_hogar">
             <option value="" disabled selected>— Selecciona —</option>
             <option>1</option><option>2</option><option>3</option>
@@ -622,7 +620,7 @@
           </select>
         </div>
         <div class="campo">
-          <label>¿Cuántos de ellos son estudiantes? <span class="req">*</span></label>
+          <label><span class="req">* </span>¿Cuántos de ellos son estudiantes?</label>
           <select name="num_estudiantes_hogar">
             <option value="" disabled selected>— Selecciona —</option>
             <option>Solo yo</option><option>2</option><option>3</option><option>4 o más</option>
@@ -631,7 +629,7 @@
       </div>
 
       <div class="campo">
-        <label>Tu vivienda es… <span class="req">*</span></label>
+        <label><span class="req">* </span>Tu vivienda es…</label>
         <div class="opciones horizontal">
           <label class="opcion"><input type="radio" name="tipo_vivienda" value="Propia"> Propia</label>
           <label class="opcion"><input type="radio" name="tipo_vivienda" value="Rentada"> Rentada</label>
@@ -641,7 +639,7 @@
       </div>
 
       <div class="campo">
-        <label>¿Con qué servicios cuenta tu vivienda? <span class="req">*</span></label>
+        <label><span class="req">* </span>¿Con qué servicios cuenta tu vivienda?</label>
         <div class="opciones horizontal">
           <label class="opcion"><input type="checkbox" name="servicios" value="Agua potable"> Agua potable</label>
           <label class="opcion"><input type="checkbox" name="servicios" value="Electricidad"> Electricidad</label>
@@ -652,7 +650,7 @@
       </div>
 
       <div class="campo">
-        <label>Ingreso mensual aproximado de tu familia <span class="req">*</span></label>
+        <label><span class="req">* </span>Ingreso mensual aproximado de tu familia</label>
         <div class="opciones">
           <label class="opcion"><input type="radio" name="ingreso_familia" value="Menos de $3,000"> Menos de $3,000</label>
           <label class="opcion"><input type="radio" name="ingreso_familia" value="$3,001 – $6,000"> $3,001 – $6,000</label>
@@ -664,7 +662,7 @@
       </div>
 
       <div class="campo">
-        <label>¿Quién es el principal proveedor económico de tu hogar? <span class="req">*</span></label>
+        <label><span class="req">* </span>¿Quién es el principal proveedor económico de tu hogar?</label>
         <div class="opciones horizontal">
           <label class="opcion"><input type="radio" name="proveedor" value="Padre"> Padre</label>
           <label class="opcion"><input type="radio" name="proveedor" value="Madre"> Madre</label>
@@ -675,7 +673,7 @@
       </div>
 
       <div class="campo">
-        <label>¿Trabajas actualmente además de estudiar? <span class="req">*</span></label>
+        <label><span class="req">* </span>¿Trabajas actualmente además de estudiar?</label>
         <div class="opciones horizontal">
           <label class="opcion"><input type="radio" name="trabaja" value="No"> No</label>
           <label class="opcion"><input type="radio" name="trabaja" value="Sí, medio tiempo"> Sí, medio tiempo</label>
@@ -686,7 +684,7 @@
 
       <div class="row-2" style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
         <div class="campo">
-          <label>Escolaridad del padre o tutor masculino <span class="req">*</span></label>
+          <label><span class="req">* </span>Escolaridad del padre o tutor masculino</label>
           <select name="escolaridad_padre">
             <option value="" disabled selected>— Selecciona —</option>
             <option>Sin estudios</option>
@@ -699,7 +697,7 @@
           </select>
         </div>
         <div class="campo">
-          <label>Escolaridad de la madre o tutora <span class="req">*</span></label>
+          <label><span class="req">* </span>Escolaridad de la madre o tutora</label>
           <select name="escolaridad_madre">
             <option value="" disabled selected>— Selecciona —</option>
             <option>Sin estudios</option>
@@ -714,7 +712,7 @@
       </div>
 
       <div class="campo">
-        <label>¿Con qué dispositivos cuentas para estudiar? <span class="req">*</span></label>
+        <label><span class="req">* </span>¿Con qué dispositivos cuentas para estudiar?</label>
         <div class="opciones horizontal">
           <label class="opcion"><input type="checkbox" name="dispositivos" value="Computadora de escritorio"> Computadora de escritorio</label>
           <label class="opcion"><input type="checkbox" name="dispositivos" value="Laptop"> Laptop</label>
@@ -725,7 +723,7 @@
       </div>
 
       <div class="campo">
-        <label>¿Recibes algún apoyo económico o beca actualmente? <span class="req">*</span></label>
+        <label><span class="req">* </span>¿Recibes algún apoyo económico o beca actualmente?</label>
         <div class="opciones">
           <label class="opcion"><input type="checkbox" name="becas" value="Beca Benito Juárez"> Beca Benito Juárez (Bienestar)</label>
           <label class="opcion"><input type="checkbox" name="becas" value="Beca institucional"> Beca institucional del plantel</label>
@@ -736,7 +734,7 @@
       </div>
 
       <div class="campo">
-        <label>¿Cómo te trasladas al plantel? <span class="req">*</span></label>
+        <label><span class="req">* </span>¿Cómo te trasladas al plantel?</label>
         <div class="opciones horizontal">
           <label class="opcion"><input type="radio" name="transporte" value="A pie"> A pie</label>
           <label class="opcion"><input type="radio" name="transporte" value="Bicicleta"> Bicicleta</label>
@@ -747,7 +745,7 @@
       </div>
 
       <div class="campo">
-        <label>Tiempo aproximado de traslado al plantel <span class="req">*</span></label>
+        <label><span class="req">* </span>Tiempo aproximado de traslado al plantel</label>
         <div class="opciones horizontal">
           <label class="opcion"><input type="radio" name="tiempo_traslado" value="Menos de 15 min"> Menos de 15 min</label>
           <label class="opcion"><input type="radio" name="tiempo_traslado" value="15 – 30 min"> 15 – 30 min</label>
@@ -768,16 +766,16 @@
       </div>
       <div class="seccion-body row-2" style="padding:0; gap:16px;">
         <div class="campo">
-          <label>Nombre del padre, madre o tutor <span class="req">*</span></label>
+          <label><span class="req">* </span>Nombre del padre, madre o tutor</label>
           <input type="text" name="firma_tutor" placeholder="Nombre completo del tutor">
         </div>
         <div class="campo">
-          <label>Tu nombre completo <span class="req">*</span></label>
+          <label><span class="req">* </span>Tu nombre completo</label>
           <input type="text" name="firma_alumno" placeholder="Escribe tu nombre completo">
         </div>
       </div>
       <div class="campo">
-        <label>Fecha <span class="req">*</span></label>
+        <label><span class="req">* </span>Fecha</label>
         <input type="date" name="fecha_firma" required>
       </div>
     </div>
@@ -854,3 +852,4 @@
 </script>
 </body>
 </html>
+
