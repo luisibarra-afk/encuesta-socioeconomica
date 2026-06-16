@@ -22,7 +22,9 @@ const HEADERS = [
 
 function doPost(e) {
   try {
-    var data = JSON.parse(e.postData.contents);
+    // Soporta envío via iframe (campo "data") y via fetch (body directo)
+    var raw = (e.postData && e.postData.contents) ? e.postData.contents : '';
+    var data = JSON.parse(e.parameter && e.parameter.data ? e.parameter.data : raw);
     var sheet = SpreadsheetApp.openById('1RIeChU3mA5fTy_-3gT2IrfVah-X_-toBqjjjdLOv-34').getActiveSheet();
 
     // Crear encabezados con formato si la hoja está vacía
