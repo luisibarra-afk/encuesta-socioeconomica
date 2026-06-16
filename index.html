@@ -205,13 +205,34 @@
   .estilo-card input[type="radio"] { display: none; }
   .estilo-card:has(input:checked) {
     border-color: var(--verde-m);
-    box-shadow: 0 0 0 3px rgba(34,135,76,.12);
+    background: #edf7f1;
+    box-shadow: 0 0 0 4px rgba(34,135,76,.18), 0 4px 16px rgba(34,135,76,.15);
   }
   .estilo-content {
     padding: 14px 14px 12px;
     display: flex;
     flex-direction: column;
     gap: 4px;
+    position: relative;
+  }
+  /* Checkmark al seleccionar */
+  .estilo-card:has(input:checked) .estilo-content::after {
+    content: '✓';
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    width: 22px;
+    height: 22px;
+    background: var(--verde-m);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 22px;
+    text-align: center;
   }
   .estilo-ico { font-size: 22px; line-height: 1; margin-bottom: 2px; }
   .estilo-content strong {
@@ -226,7 +247,7 @@
     line-height: 1.5;
     margin: 0;
   }
-  .estilo-card:hover { border-color: #aaa; }
+  .estilo-card:hover { border-color: #aaa; box-shadow: 0 2px 8px rgba(0,0,0,.08); }
 
   /* ── SUB-SECCIÓN discapacidad ── */
   .sub-grid {
@@ -420,6 +441,7 @@
     <div class="seccion-body">
       <div class="campo">
         <label>¿Cuál es tu estilo de aprendizaje? <span class="req">*</span></label>
+        <p style="font-size:12.5px;color:var(--gris-m);margin-bottom:2px;">Elige la opción con la que más te identificas.</p>
         <div class="estilos-grid">
           <label class="estilo-card">
             <input type="radio" name="estilo_aprendizaje" value="Visual">
