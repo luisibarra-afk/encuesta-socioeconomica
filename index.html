@@ -135,8 +135,21 @@
   }
   .row-2 { grid-template-columns: 1fr 1fr; }
   .row-3 { grid-template-columns: 1fr 1fr 1fr; }
-  @media(max-width: 560px) {
+  @media(max-width: 600px) {
     .row-2, .row-3 { grid-template-columns: 1fr; }
+    .seccion-body { padding: 16px 14px; gap: 14px; }
+    .seccion-header { padding: 11px 14px; }
+    .seccion-header h2 { font-size: 12px; }
+    header { padding: 22px 16px 16px; }
+    header h1 { font-size: 22px; }
+    .wrapper { padding: 18px 10px 60px; }
+    .opciones.horizontal { gap: 8px; }
+    .opcion { font-size: 13px; }
+    .campo input[type="text"],
+    .campo input[type="email"],
+    .campo input[type="date"],
+    .campo select,
+    .campo textarea { font-size: 16px; /* evita zoom en iOS */ padding: 10px 12px; }
   }
 
   /* ── CAMPO ── */
@@ -145,8 +158,14 @@
     font-size: 13px;
     font-weight: 600;
     color: var(--gris-m);
+    display: inline;
   }
-  .campo label .req { color: var(--rojo); margin-left: 2px; }
+  .campo label .req {
+    color: var(--rojo);
+    margin-left: 3px;
+    white-space: nowrap;
+    display: inline;
+  }
   .campo input[type="text"],
   .campo input[type="email"],
   .campo input[type="date"],
