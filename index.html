@@ -754,13 +754,55 @@
 <div id="toast">✅ Expediente guardado correctamente</div>
 
 <script>
+  // Pega aquí la URL de tu Web App de Google Apps Script
+  const SCRIPT_URL = 'PEGA_TU_URL_AQUI';
+
   document.querySelector('[name="fecha_firma"]').valueAsDate = new Date();
 
-  document.getElementById('formConsultorio').addEventListener('submit', function(e){
+  document.getElementById('formConsultorio').addEventListener('submit', async function(e) {
     e.preventDefault();
-    const toast = document.getElementById('toast');
-    toast.style.display = 'block';
-    setTimeout(() => toast.style.display = 'none', 3500);
+    const form = e.target;
+    const data = {};
+
+    form.querySelectorAll('input:not([type="checkbox"]):not([type="radio"]), select, textarea').forEach(el => {
+      if (el.name) data[el.name] = el.value;
+    });
+
+    form.querySelectorAll('input[type="radio"]:checked').forEach(el => {
+      data[el.name] = el.value;
+    });
+
+    form.querySelectorAll('input[type="checkbox"]').forEach(el => {
+      if (!el.name) return;
+      if (!data[el.name]) data[el.name] = [];
+      if (el.checked) data[el.name].push(el.value);
+    });
+
+    const btn = form.querySelector('.btn-enviar');
+    btn.disabled = true;
+    btn.textContent = 'Guardando…';
+
+    try {
+      // mode: 'no-cors' evita el bloqueo del navegador con Google Apps Script
+      await fetch(SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain' },
+        body: JSON.stringify(data)
+      });
+
+      const toast = document.getElementById('toast');
+      toast.style.display = 'block';
+      setTimeout(() => toast.style.display = 'none', 3500);
+      form.reset();
+      document.querySelector('[name="fecha_firma"]').valueAsDate = new Date();
+
+    } catch (err) {
+      alert('Error al enviar. Verifica tu conexión a internet.');
+    }
+
+    btn.disabled = false;
+    btn.textContent = 'Guardar expediente →';
   });
 </script>
 </body>
