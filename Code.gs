@@ -23,7 +23,7 @@ const HEADERS = [
 function doPost(e) {
   try {
     var data = JSON.parse(e.postData.contents);
-    var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+    var sheet = SpreadsheetApp.openById('1RIeChU3mA5fTy_-3gT2IrfVah-X_-toBqjjjdLOv-34').getActiveSheet();
 
     // Crear encabezados con formato si la hoja está vacía
     if (sheet.getLastRow() === 0) {
