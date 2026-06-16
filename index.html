@@ -188,6 +188,19 @@
   }
   .campo textarea { resize: vertical; min-height: 80px; }
 
+  /* ── VALIDACIÓN ── */
+  .campo--error > label { color: var(--rojo) !important; }
+  .campo--error input[type="text"],
+  .campo--error input[type="email"],
+  .campo--error input[type="date"],
+  .campo--error select,
+  .campo--error textarea {
+    border-color: var(--rojo) !important;
+    box-shadow: 0 0 0 3px rgba(192,57,43,.12) !important;
+  }
+  .campo--error .opciones,
+  .campo--error .estilos-grid { outline: 1.5px solid var(--rojo); border-radius: 8px; }
+
   /* ── RADIO / CHECKBOX ── */
   .opciones { display: flex; flex-direction: column; gap: 7px; margin-top: 2px; }
   .opciones.horizontal { flex-direction: row; flex-wrap: wrap; gap: 10px; }
@@ -805,9 +818,42 @@
 
   document.querySelector('[name="fecha_firma"]').valueAsDate = new Date();
 
+  function validarFormulario(form) {
+    form.querySelectorAll('.campo--error').forEach(function(el) { el.classList.remove('campo--error'); });
+    var errores = [];
+
+    form.querySelectorAll('.campo').forEach(function(campo) {
+      if (!campo.querySelector('label > .req')) return;
+
+      var radios  = campo.querySelectorAll('input[type="radio"]');
+      var checks  = campo.querySelectorAll('input[type="checkbox"]');
+      var inputs  = campo.querySelectorAll('input[type="text"], input[type="email"], input[type="date"], select, textarea');
+      var valido  = true;
+
+      if (radios.length > 0) {
+        valido = Array.prototype.some.call(radios, function(r) { return r.checked; });
+      } else if (checks.length > 0) {
+        valido = Array.prototype.some.call(checks, function(c) { return c.checked; });
+      } else if (inputs.length > 0) {
+        valido = Array.prototype.every.call(inputs, function(i) { return i.value.trim() !== ''; });
+      }
+
+      if (!valido) {
+        campo.classList.add('campo--error');
+        errores.push(campo);
+      }
+    });
+
+    if (errores.length > 0) {
+      errores[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+    return errores.length === 0;
+  }
+
   document.getElementById('formConsultorio').addEventListener('submit', function(e) {
     e.preventDefault();
     const form = e.target;
+    if (!validarFormulario(form)) return;
     const data = {};
 
     form.querySelectorAll('input:not([type="checkbox"]):not([type="radio"]), select, textarea').forEach(el => {
@@ -856,6 +902,15 @@
       btn.textContent = 'Guardar expediente →';
     }, 1500);
   });
+  // Limpiar error al corregir el campo
+  var formEl = document.getElementById('formConsultorio');
+  ['input', 'change'].forEach(function(evt) {
+    formEl.addEventListener(evt, function(e) {
+      var campo = e.target.closest('.campo');
+      if (campo) campo.classList.remove('campo--error');
+    });
+  });
+
   // Mostrar/ocultar campo certificado según discapacidades seleccionadas
   const DISCAP_NAMES = ['disc_fisica', 'disc_visual', 'disc_auditiva', 'disc_intelectual', 'disc_psico'];
   const NINGUNA_VALS = ['Ninguno', 'Ninguna'];
