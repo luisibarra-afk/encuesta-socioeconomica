@@ -550,16 +550,21 @@
             <label class="opcion"><input type="checkbox" name="disc_psico" value="TDAH"> TDAH</label>
             <label class="opcion"><input type="checkbox" name="disc_psico" value="Esquizofrenia"> Esquizofrenia</label>
             <label class="opcion"><input type="checkbox" name="disc_psico" value="Depresión"> Depresión</label>
+            <label class="opcion"><input type="checkbox" name="disc_psico" value="Ninguna"> Ninguna</label>
           </div>
         </div>
       </div>
 
       <div class="campo">
-        <label><span class="req">* </span>Describe tus necesidades específicas y los apoyos que requieres</label>
+        <label>Describe tus necesidades específicas y los apoyos que requieres
+          <span style="font-weight:400; color:var(--gris-m);"> (opcional, solo si tienes alguna de las discapacidades antes descritas)</span>
+        </label>
         <textarea name="desc_necesidades" placeholder="Describe los apoyos o adecuaciones que necesitas dentro del plantel…"></textarea>
       </div>
-      <div class="campo">
-        <label><span class="req">* </span>¿Cuentas con un certificado de diagnóstico actual? (emitido por institución de salud pública)</label>
+      <div class="campo" id="campo-certificado" style="display:none;">
+        <label>¿Cuentas con un certificado de diagnóstico actual? (emitido por institución de salud pública)
+          <span style="font-weight:400; color:var(--gris-m);"> (opcional)</span>
+        </label>
         <div class="opciones horizontal">
           <label class="opcion"><input type="radio" name="tiene_certificado" value="Sí"> Sí</label>
           <label class="opcion"><input type="radio" name="tiene_certificado" value="No"> No</label>
@@ -839,15 +844,38 @@
     document.body.removeChild(tempForm);
 
     // Mostrar toast tras un breve delay
+    // Restablecer visibilidad del campo certificado al resetear
     setTimeout(function() {
       const toast = document.getElementById('toast');
       toast.style.display = 'block';
       setTimeout(() => toast.style.display = 'none', 3500);
       form.reset();
+      document.getElementById('campo-certificado').style.display = 'none';
       document.querySelector('[name="fecha_firma"]').valueAsDate = new Date();
       btn.disabled = false;
       btn.textContent = 'Guardar expediente →';
     }, 1500);
+  });
+  // Mostrar/ocultar campo certificado según discapacidades seleccionadas
+  const DISCAP_NAMES = ['disc_fisica', 'disc_visual', 'disc_auditiva', 'disc_intelectual', 'disc_psico'];
+  const NINGUNA_VALS = ['Ninguno', 'Ninguna'];
+
+  function actualizarCertificado() {
+    const tieneDiscapacidad = DISCAP_NAMES.some(name =>
+      [...document.querySelectorAll('input[name="' + name + '"]:checked')]
+        .some(el => !NINGUNA_VALS.includes(el.value))
+    );
+    const campo = document.getElementById('campo-certificado');
+    campo.style.display = tieneDiscapacidad ? 'flex' : 'none';
+    if (!tieneDiscapacidad) {
+      document.querySelectorAll('input[name="tiene_certificado"]').forEach(r => r.checked = false);
+    }
+  }
+
+  DISCAP_NAMES.forEach(function(name) {
+    document.querySelectorAll('input[name="' + name + '"]').forEach(function(el) {
+      el.addEventListener('change', actualizarCertificado);
+    });
   });
 </script>
 </body>
